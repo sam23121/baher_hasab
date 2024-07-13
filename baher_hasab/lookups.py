@@ -32,6 +32,13 @@ class EletTewsak(ReverseMapping):
     thursday: int = 3
     friday: int = 2
 
+@dataclass(frozen=True)
+class Wengelawyan(ReverseMapping):
+    matthew: int = 1
+    mark: int = 2
+    luke: int = 3
+    john: int = 0
+
 
 @dataclass(frozen=True)
 class FastStartingDays:

@@ -1,4 +1,4 @@
-from baher_hasab.lookups import DaysBookmark, EletTewsak, FastStartingDays, MonthForFasting
+from lookups import DaysBookmark, EletTewsak, FastStartingDays, MonthForFasting, Wengelawyan
 from typing import Tuple
 
 
@@ -47,7 +47,7 @@ class BaherHasab:
             int: The Abketa value.
         """
         wember = self.get_wember()
-        abketa = ((wember * 11) % 30) if wember > 2 else wember * 11
+        abketa = (wember * 11) % 30
         return abketa
 
     def get_metke(self) -> int:
@@ -248,3 +248,67 @@ class BaherHasab:
             str: The date of Dehenet fast.
         """
         return self.get_event_date("dehenet")
+    
+    def get_wengelawyan(self) -> str:
+        """
+        Get the gospel of the year.
+
+        Returns:
+            str: The Gospel (Wengelawyan) of the year
+        """
+        gospels = self.current_year % 4
+        return Wengelawyan().reverse_mapping[gospels]
+    
+    def get_awde_kemer(self) -> Tuple[int, int, int]:
+        """
+        Get the awde kemer.
+
+        Returns:
+            int: the ith awde kemer we are at (based on the given year)
+            int: the past years in the awde kemer 
+            int: the years left for the awde kemer to finish
+        """
+        total_years = self.get_total_years()
+        ith_abiy_kemer = (total_years // self.abiy_kemer) + 1
+        passed_years = total_years % self.abiy_kemer
+        reminded_years = self.abiy_kemer - passed_years
+        print(f"""We are in the {ith_abiy_kemer}th Abiy kemer \n 
+              have gone through {passed_years} years \n
+              and have {reminded_years} years left""")
+        return ith_abiy_kemer, passed_years, reminded_years
+    
+    def get_awde_mahtot(self) -> Tuple[int, int, int]:
+        """
+        Get the awde mahtot.
+
+        Returns:
+            int: the ith awde mahtot we are at (based on the given year)
+            int: the past years in the awde mahtot 
+            int: the years left for the awde mahtot to finish
+        """
+        total_years = self.get_total_years()
+        ith_awde_mahtot = (total_years // self.awde_mahtot) + 1
+        passed_years = total_years % self.awde_mahtot
+        reminded_years = self.awde_mahtot - passed_years
+        print(f"""We are in the {ith_awde_mahtot}th Awde Mahtot \n 
+              have gone through {passed_years} years \n
+              and have {reminded_years} years left""")
+        return ith_awde_mahtot, passed_years, reminded_years
+    
+    def get_awde_tsehay(self) -> Tuple[int, int, int]:
+        """
+        Get the awde tsehay.
+
+        Returns:
+            int: the ith awde tsehay we are at (based on the given year)
+            int: the past years in the awde tsehay 
+            int: the years left for the awde tsehay to finish
+        """
+        total_years = self.get_total_years()
+        ith_awde_tsehay = (total_years // self.awde_tsehay) + 1
+        passed_years = total_years % self.awde_tsehay
+        reminded_years = self.awde_tsehay - passed_years
+        print(f"""We are in the {ith_awde_tsehay}th Awde Mahtot \n 
+              have gone through {passed_years} years \n
+              and have {reminded_years} years left""")
+        return ith_awde_tsehay, passed_years, reminded_years
