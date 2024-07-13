@@ -1,5 +1,5 @@
 import unittest
-from baher_hasab import BaherHasab
+from baher_hasab.baher_hasab import BaherHasab
 
 
 class TestBaherHasab(unittest.TestCase):
@@ -9,6 +9,7 @@ class TestBaherHasab(unittest.TestCase):
         self.year_random = BaherHasab(current_year=1962)
         self.year_lowest = BaherHasab(current_year=1972)
         self.year_highest = BaherHasab(current_year=1975)
+        self.year_edge = BaherHasab(current_year=1967)
 
     def test_get_total_years(self):
         result = self.year_random.get_total_years()
@@ -27,6 +28,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = 7516  # 5500 + 1962
         self.assertEqual(result, expected, "Total years should be 7516")
 
+        result = self.year_edge.get_total_years()
+        expected = 7467  # 5500 + 1962
+        self.assertEqual(result, expected, "Total years should be 7467")
+
     def test_get_wember(self):
         result = self.year_random.get_wember()
         expected = 13  # Calculation based on 5516
@@ -43,6 +48,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_wember()
         expected = 10  # Calculation based on 5516
         self.assertEqual(result, expected, "Wember should be 10")
+
+        result = self.year_edge.get_wember()
+        expected = 18  # Calculation based on 5516
+        self.assertEqual(result, expected, "Wember should be 18")
 
     def test_get_abketa(self):
         result = self.year_random.get_abketa()
@@ -61,6 +70,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = 20  # Calculation based on Wember 0
         self.assertEqual(result, expected, "Abketa should be 20")
 
+        result = self.year_edge.get_abketa()
+        expected = 18  # Calculation based on Wember 0
+        self.assertEqual(result, expected, "Abketa should be 18")
+
     def test_get_metke(self):
         result = self.year_random.get_metke()
         expected = 7  # Calculation based on Abketa 0
@@ -78,6 +91,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = 10  # Calculation based on Abketa 0
         self.assertEqual(result, expected, "Metke should be 10")
 
+        result = self.year_edge.get_metke()
+        expected = 12  # Calculation based on Wember 0
+        self.assertEqual(result, expected, "Metke should be 12")
+
     def test_get_first_day_of_year(self):
         result = self.year_random.get_first_day_of_year()
         expected = "thursday"  # Calculation based on 5516 total years
@@ -94,6 +111,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_first_day_of_year()
         expected = "tuesday"  # Calculation based on 5516 total years
         self.assertEqual(result, expected, "First day of year should be 'tuesday'")
+
+        result = self.year_edge.get_first_day_of_year()
+        expected = "wednesday"  # Calculation based on 5516 total years
+        self.assertEqual(result, expected, "First day of year should be 'wednesday'")
 
     def test_add_days(self):
         result = self.year_random.add_days("thursday", 36)
@@ -115,7 +136,6 @@ class TestBaherHasab(unittest.TestCase):
         # self.assertEqual(result, expected, "Adding 37 days to 'thursday' should give 'friday'")
 
     def test_get_nenewa(self):
-        # EletTewsak.sunday = 7  # Example value
         result, metke_month = self.year_random.get_nenewa()
         expected_result = 9  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 9")
@@ -136,6 +156,11 @@ class TestBaherHasab(unittest.TestCase):
         self.assertEqual(result, expected_result, "Nenewa day should be 18")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
+        result, metke_month = self.year_edge.get_nenewa()
+        expected_result = 17  # Based on the calculation and example data
+        self.assertEqual(result, expected_result, "Nenewa day should be 18")
+        self.assertEqual(metke_month, 30, "Metke month should be 0")
+
     def test_get_hudade(self):
         result = self.year_random.get_hudade()
         expected = "Yekatit 23"
@@ -152,6 +177,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_hudade()
         expected = "Megabit 2"
         self.assertEqual(result, expected, "Hudade fast should be on 'Megabit 2'")
+
+        result = self.year_edge.get_hudade()
+        expected = "Megabit 1"
+        self.assertEqual(result, expected, "Hudade fast should be on 'Megabit 1'")
 
     def test_get_debrezeit(self):
         result = self.year_random.get_debrezeit()
@@ -170,6 +199,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = "Megabit 29"
         self.assertEqual(result, expected, "Debrezeit should be on 'Megabit 29'")
 
+        result = self.year_edge.get_debrezeit()
+        expected = "Megabit 28"
+        self.assertEqual(result, expected, "Debrezeit should be on 'Megabit 28'")
+
     def test_get_hosana(self):
         result = self.year_random.get_hosana()
         expected = "Miyazia 11"
@@ -186,6 +219,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_hosana()
         expected = "Miyazia 20"
         self.assertEqual(result, expected, "Hosana should be on 'Miyazia 20'")
+
+        result = self.year_edge.get_hosana()
+        expected = "Miyazia 19"
+        self.assertEqual(result, expected, "Hosana should be on 'Miyazia 19'")
 
     def test_get_seklet(self):
         result = self.year_random.get_seklet()
@@ -204,6 +241,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = "Miyazia 25"
         self.assertEqual(result, expected, "Seklet should be on 'Miyazia 25'")
 
+        result = self.year_edge.get_seklet()
+        expected = "Miyazia 24"
+        self.assertEqual(result, expected, "Seklet should be on 'Miyazia 24'")
+
     def test_get_tensae(self):
         result = self.year_random.get_tensae()
         expected = "Miyazia 18"
@@ -220,6 +261,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_tensae()
         expected = "Miyazia 27"
         self.assertEqual(result, expected, "Tensae should be on 'Miyazia 27'")
+
+        result = self.year_edge.get_tensae()
+        expected = "Miyazia 26"
+        self.assertEqual(result, expected, "Tensae should be on 'Miyazia 26'")
 
     def test_get_rekeb_kanat(self):
         result = self.year_random.get_rekeb_kanat()
@@ -238,6 +283,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = "Genbot 21"
         self.assertEqual(result, expected, "Rekeb Kanat should be on 'Genbot 21'")
 
+        result = self.year_edge.get_rekeb_kanat()
+        expected = "Genbot 20"
+        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Genbot 20'")
+
     def test_get_erget(self):
         result = self.year_random.get_erget()
         expected = "Genbot 27"
@@ -254,6 +303,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_erget()
         expected = "Sene 6"
         self.assertEqual(result, expected, "Erget should be on 'Sene 6'")
+
+        result = self.year_edge.get_erget()
+        expected = "Sene 5"
+        self.assertEqual(result, expected, "Erget should be on 'Sene 5'")
 
     def test_get_piraklitos(self):
         result = self.year_random.get_piraklitos()
@@ -272,6 +325,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = "Sene 16"
         self.assertEqual(result, expected, "Piraklitos fast should be on 'Sene 16'")
 
+        result = self.year_edge.get_piraklitos()
+        expected = "Sene 15"
+        self.assertEqual(result, expected, "Piraklitos fast should be on 'Sene 15'")
+
     def test_get_hawaryat(self):
         result = self.year_random.get_hawaryat()
         expected = "Sene 8"
@@ -289,6 +346,10 @@ class TestBaherHasab(unittest.TestCase):
         expected = "Sene 17"
         self.assertEqual(result, expected, "Sene Fast fast should be on 'Sene 17'")
 
+        result = self.year_edge.get_hawaryat()
+        expected = "Sene 16"
+        self.assertEqual(result, expected, "Sene Fast fast should be on 'Sene 16'")
+
     def test_get_dehenet(self):
         result = self.year_random.get_dehenet()
         expected = "Sene 10"
@@ -305,6 +366,10 @@ class TestBaherHasab(unittest.TestCase):
         result = self.year_current.get_dehenet()
         expected = "Sene 19"
         self.assertEqual(result, expected, "Dehenet Fast fast should be on 'Sene 19'")
+
+        result = self.year_edge.get_dehenet()
+        expected = "Sene 18"
+        self.assertEqual(result, expected, "Dehenet Fast fast should be on 'Sene 18'")
 
     # def test_get_length_between(self):
     #     # FastStartingDays.hudade = 55  # Example value

@@ -1,4 +1,4 @@
-from lookups import DaysBookmark, EletTewsak, FastStartingDays, MonthForFasting
+from baher_hasab.lookups import DaysBookmark, EletTewsak, FastStartingDays, MonthForFasting
 from typing import Tuple
 
 
@@ -31,12 +31,13 @@ class BaherHasab:
     def get_wember(self) -> int:
         """
         Calculate the Wember value for the current year.
+        (we minus one because the year has started not finished)
 
         Returns:
             int: The Wember value.
         """
         total_years = self.get_total_years()
-        return (total_years % self.awde_abketa) - 1
+        return (total_years - 1) % self.awde_abketa
 
     def get_abketa(self) -> int:
         """
