@@ -53,6 +53,22 @@ class FastStartingDays:
     hawaryat: int = 119  # 29
     dehenet: int = 121  # 1
 
+@dataclass(frozen=True)
+class EthiopianCalendarMonths(ReverseMapping):
+    Meskerem: int = 1
+    Tikimt: int = 2
+    Hidar: int = 3
+    Tahsas: int = 4
+    Tir: int = 5
+    Yekatit: int = 6
+    Megabit: int = 7
+    Miyazia: int = 8
+    Ginbot: int = 9
+    Sene: int = 10
+    Hamle: int = 11 
+    Nehasse: int = 12 
+    Pagumen: int = 13
+
 
 @dataclass(frozen=True)
 class MonthForFasting:
@@ -72,17 +88,17 @@ class MonthForFasting:
         default_factory=lambda: {"Megabit": 60, "Miyazia": 90}
     )  # 7 8
     rekeb_kanat: Dict[str, int] = field(
-        default_factory=lambda: {"Miyazia": 90, "Genbot": 120}
+        default_factory=lambda: {"Miyazia": 90, "Ginbot": 120}
     )  # 8 9
     erget: Dict[str, int] = field(
-        default_factory=lambda: {"Genbot": 120, "Sene": 150}
+        default_factory=lambda: {"Ginbot": 120, "Sene": 150}
     )  # 9 10
     piraklitos: Dict[str, int] = field(
-        default_factory=lambda: {"Genbot": 120, "Sene": 150}
+        default_factory=lambda: {"Ginbot": 120, "Sene": 150}
     )  # 9 10
     hawaryat: Dict[str, int] = field(
-        default_factory=lambda: {"Genbot": 120, "Sene": 150}
+        default_factory=lambda: {"Ginbot": 120, "Sene": 150}
     )  # 9 10
     dehenet: Dict[str, int] = field(
-        default_factory=lambda: {"Genbot": 120, "Sene": 150}
+        default_factory=lambda: {"Ginbot": 120, "Sene": 150}
     )  # 9 10

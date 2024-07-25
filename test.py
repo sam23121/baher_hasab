@@ -5,11 +5,11 @@ from baher_hasab.baher_hasab import BaherHasab
 class TestBaherHasab(unittest.TestCase):
     def setUp(self):
         """Set up any necessary data or state before each test."""
-        self.year_current = BaherHasab(current_year=2016)
-        self.year_random = BaherHasab(current_year=1962)
-        self.year_lowest = BaherHasab(current_year=1972)
-        self.year_highest = BaherHasab(current_year=1975)
-        self.year_edge = BaherHasab(current_year=1967)
+        self.year_current = BaherHasab(given_year=2016)
+        self.year_random = BaherHasab(given_year=1962)
+        self.year_lowest = BaherHasab(given_year=1972)
+        self.year_highest = BaherHasab(given_year=1975)
+        self.year_edge = BaherHasab(given_year=1967)
 
     def test_get_total_years(self):
         result = self.year_random.get_total_years()
@@ -135,28 +135,28 @@ class TestBaherHasab(unittest.TestCase):
         # expected = 'friday'
         # self.assertEqual(result, expected, "Adding 37 days to 'thursday' should give 'friday'")
 
-    def test_get_nenewa(self):
-        result, metke_month = self.year_random.get_nenewa()
+    def test_get_nenewe(self):
+        result, metke_month = self.year_random.get_nenewe()
         expected_result = 9  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 9")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
-        result, metke_month = self.year_lowest.get_nenewa()
+        result, metke_month = self.year_lowest.get_nenewe()
         expected_result = 19  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 19")
         self.assertEqual(metke_month, 0, "Metke month should be 0")
 
-        result, metke_month = self.year_highest.get_nenewa()
+        result, metke_month = self.year_highest.get_nenewe()
         expected_result = 21  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 21")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
-        result, metke_month = self.year_current.get_nenewa()
+        result, metke_month = self.year_current.get_nenewe()
         expected_result = 18  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 18")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
-        result, metke_month = self.year_edge.get_nenewa()
+        result, metke_month = self.year_edge.get_nenewe()
         expected_result = 17  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 18")
         self.assertEqual(metke_month, 30, "Metke month should be 0")
@@ -268,33 +268,33 @@ class TestBaherHasab(unittest.TestCase):
 
     def test_get_rekeb_kanat(self):
         result = self.year_random.get_rekeb_kanat()
-        expected = "Genbot 12"
-        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Genbot 12'")
+        expected = "Ginbot 12"
+        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Ginbot 12'")
 
         result = self.year_lowest.get_rekeb_kanat()
         expected = "Miyazia 22"
         self.assertEqual(result, expected, "Rekeb Kanat should be on 'Miyazia 22'")
 
         result = self.year_highest.get_rekeb_kanat()
-        expected = "Genbot 24"
-        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Genbot 24'")
+        expected = "Ginbot 24"
+        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Ginbot 24'")
 
         result = self.year_current.get_rekeb_kanat()
-        expected = "Genbot 21"
-        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Genbot 21'")
+        expected = "Ginbot 21"
+        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Ginbot 21'")
 
         result = self.year_edge.get_rekeb_kanat()
-        expected = "Genbot 20"
-        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Genbot 20'")
+        expected = "Ginbot 20"
+        self.assertEqual(result, expected, "Rekeb Kanat should be on 'Ginbot 20'")
 
     def test_get_erget(self):
         result = self.year_random.get_erget()
-        expected = "Genbot 27"
-        self.assertEqual(result, expected, "Erget should be on 'Genbot 27'")
+        expected = "Ginbot 27"
+        self.assertEqual(result, expected, "Erget should be on 'Ginbot 27'")
 
         result = self.year_lowest.get_erget()
-        expected = "Genbot 7"
-        self.assertEqual(result, expected, "Erget should be on 'Genbot 7'")
+        expected = "Ginbot 7"
+        self.assertEqual(result, expected, "Erget should be on 'Ginbot 7'")
 
         result = self.year_highest.get_erget()
         expected = "Sene 9"
@@ -314,8 +314,8 @@ class TestBaherHasab(unittest.TestCase):
         self.assertEqual(result, expected, "Piraklitos fast should be on 'Sene 7'")
 
         result = self.year_lowest.get_piraklitos()
-        expected = "Genbot 17"
-        self.assertEqual(result, expected, "Piraklitos fast should be on 'Genbot 17'")
+        expected = "Ginbot 17"
+        self.assertEqual(result, expected, "Piraklitos fast should be on 'Ginbot 17'")
 
         result = self.year_highest.get_piraklitos()
         expected = "Sene 19"
@@ -335,8 +335,8 @@ class TestBaherHasab(unittest.TestCase):
         self.assertEqual(result, expected, "Sene Fast fast should be on 'Sene 8'")
 
         result = self.year_lowest.get_hawaryat()
-        expected = "Genbot 18"
-        self.assertEqual(result, expected, "Sene Fast fast should be on 'Genbot 18'")
+        expected = "Ginbot 18"
+        self.assertEqual(result, expected, "Sene Fast fast should be on 'Ginbot 18'")
 
         result = self.year_highest.get_hawaryat()
         expected = "Sene 20"
@@ -356,7 +356,7 @@ class TestBaherHasab(unittest.TestCase):
         self.assertEqual(result, expected, "Dehenet Fast fast should be on 'Sene 10'")
 
         result = self.year_lowest.get_dehenet()
-        expected = "Genbot 20"
+        expected = "Ginbot 20"
         self.assertEqual(result, expected, "Dehenet Fast fast should be on 'Sene 20'")
 
         result = self.year_highest.get_dehenet()
