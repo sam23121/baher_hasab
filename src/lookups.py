@@ -32,6 +32,7 @@ class EletTewsak(ReverseMapping):
     Thursday: int = 3
     Friday: int = 2
 
+
 @dataclass(frozen=True)
 class Wengelawyan(ReverseMapping):
     Matthew: int = 1
@@ -53,6 +54,7 @@ class FastStartingDays:
     hawaryat: int = 119  # 29
     dehenet: int = 121  # 1
 
+
 @dataclass(frozen=True)
 class EthiopianCalendarMonths(ReverseMapping):
     Meskerem: int = 1
@@ -65,8 +67,8 @@ class EthiopianCalendarMonths(ReverseMapping):
     Miyazia: int = 8
     Ginbot: int = 9
     Sene: int = 10
-    Hamle: int = 11 
-    Nehasse: int = 12 
+    Hamle: int = 11
+    Nehasse: int = 12
     Pagumen: int = 13
 
 

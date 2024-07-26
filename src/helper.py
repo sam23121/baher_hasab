@@ -1,4 +1,4 @@
-from baher_hasab.lookups import DaysBookmark, EletTewsak, FastStartingDays, MonthForFasting, Wengelawyan, EthiopianCalendarMonths
+from lookups import FastStartingDays, MonthForFasting
 from typing import Tuple
 
 
@@ -27,7 +27,6 @@ def add_days(day: str, num_days: int) -> str:
     return days_of_the_week[new_index]
 
 
-
 def get_length_between(nenewe: int, fast: str) -> Tuple[int, int]:
     """
     Calculate the length between the nenewe day and the start of a fast.
@@ -44,15 +43,20 @@ def get_length_between(nenewe: int, fast: str) -> Tuple[int, int]:
 
     return length_from_nenewe, day
 
+
 def is_gregorian_leap_year(year: int) -> bool:
     """Check if the Gregorian year is a leap year."""
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+
 
 def is_ethiopian_leap_year(year: int) -> bool:
     """Check if the Gregorian year is a leap year."""
     return year % 4 == 0
 
-def calculate_gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, gregorian_day: int) -> tuple[int, int, int]:
+
+def calculate_gregorian_to_ethiopian(
+    gregorian_year: int, gregorian_month: int, gregorian_day: int
+) -> tuple[int, int, int]:
     """Convert a Gregorian date to an Ethiopian date.
 
     Args:
@@ -95,7 +99,6 @@ def calculate_gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, 
     else:
         ethiopian_year = gregorian_year - ethio_year_diff - 1
         diff_eight = True
-        
 
     # Calculate the number of days since the last Ethiopian New Year
     gregorian_month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -103,8 +106,12 @@ def calculate_gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, 
         gregorian_month_days[1] = 29
 
     days_in_gregorian_year = sum(gregorian_month_days)
-    days_since_new_year = sum(gregorian_month_days[:gregorian_month - 1]) + gregorian_day
-    days_since_new_year -= sum(gregorian_month_days[:new_year_date[0] - 1]) + new_year_date[1]
+    days_since_new_year = (
+        sum(gregorian_month_days[: gregorian_month - 1]) + gregorian_day
+    )
+    days_since_new_year -= (
+        sum(gregorian_month_days[: new_year_date[0] - 1]) + new_year_date[1]
+    )
 
     if days_since_new_year < 0:
         days_since_new_year += days_in_gregorian_year
@@ -114,21 +121,23 @@ def calculate_gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, 
     # ethiopian_day = days_since_new_year % 30 + 1
     if diff_eight:
         ethiopian_day = days_since_new_year % 30
-    else: 
+    else:
         ethiopian_day = days_since_new_year % 30 + 1
     if ethiopian_month == 13 and ethiopian_day < 5:
         ethiopian_day += 1
-        
 
-    
-    if ((ethiopian_year + 1) % 4) == 0 and (gregorian_month, gregorian_day) == (new_year_date[0], new_year_date[1] - 1):
+    if ((ethiopian_year + 1) % 4) == 0 and (gregorian_month, gregorian_day) == (
+        new_year_date[0],
+        new_year_date[1] - 1,
+    ):
         return ethiopian_year, 13, 6
-
 
     return ethiopian_year, ethiopian_month, ethiopian_day
 
 
-def calculate_ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, ethiopian_day: int) -> tuple[int, int, int]:
+def calculate_ethiopian_to_gregorian(
+    ethiopian_year: int, ethiopian_month: int, ethiopian_day: int
+) -> tuple[int, int, int]:
     """Convert an Ethiopian date to a Gregorian date.
 
     Args:
@@ -145,15 +154,14 @@ def calculate_ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, 
         raise ValueError("Ethiopian month must be between 1 and 13")
     if not 1 <= ethiopian_day <= 30:
         raise ValueError("Ethiopian day must be between 1 and 30")
-    
+
     # Calculate the number of days in the Ethiopian month
     max_days = 30
     if ethiopian_month == 13:
         max_days = 6 if (ethiopian_year % 4) == 3 else 5
-    
+
     if not 1 <= ethiopian_day <= max_days:
         raise ValueError(f"Ethiopian day must be between 1 and {max_days}")
-    
 
     # Difference in years between Gregorian and Ethiopian calendars
     ethio_year_diff = 7
@@ -175,7 +183,9 @@ def calculate_ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, 
         gregorian_month_days[1] = 29
 
     days_in_gregorian_year = sum(gregorian_month_days)
-    new_year_day_of_year = sum(gregorian_month_days[:new_year_date[0] - 1]) + new_year_date[1] 
+    new_year_day_of_year = (
+        sum(gregorian_month_days[: new_year_date[0] - 1]) + new_year_date[1]
+    )
 
     gregorian_day_of_year = new_year_day_of_year + days_since_new_year
     if gregorian_year - ethiopian_year == 8:
@@ -185,8 +195,6 @@ def calculate_ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, 
         gregorian_day_of_year -= days_in_gregorian_year
         gregorian_year += 1
 
-    
-
     # Calculate the month and day
     gregorian_month = 1
     while gregorian_day_of_year > gregorian_month_days[gregorian_month - 1]:
@@ -194,36 +202,43 @@ def calculate_ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, 
         gregorian_month += 1
 
     gregorian_day = gregorian_day_of_year
-    
-    
 
     if ((ethiopian_year + 1) % 4) == 0 and (ethiopian_month, ethiopian_day) == (13, 6):
         return gregorian_year, 9, 11
-    
 
     return gregorian_year, gregorian_month, gregorian_day
+
 
 # @staticmethod
 def get_total_days(total_years: int) -> int:
     leap_years = total_years // 4
     return (total_years - 1) * 365 + leap_years
 
+
 # @staticmethod
 def get_day_of_week(total_days: int) -> int:
     return (total_days % 7) + 1
+
 
 # @staticmethod
 def calculate_days_to_nenewe(start_day_of_week: int) -> int:
     return 128 - ((start_day_of_week + 1) % 7) + 1
 
+
 # @staticmethod
-def calculate_event_date(total_days_till_metke: int, days_to_event: int, nenewe_to_event_length: int, total_days: int) -> Tuple[int, int]:
+def calculate_event_date(
+    total_days_till_metke: int,
+    days_to_event: int,
+    nenewe_to_event_length: int,
+    total_days: int,
+) -> Tuple[int, int]:
     event_day = total_days_till_metke + days_to_event + nenewe_to_event_length
     month_of_event = ((event_day - total_days - 1) // 30) + 1
     if (event_day - total_days - 1) % 30 == 0:
         month_of_event -= 1
     day_of_event = ((event_day - total_days - 1) % 30) or 30
     return month_of_event, day_of_event
+
 
 def old_get_event_date(self, event_name: str) -> str:
     """
@@ -251,6 +266,3 @@ def old_get_event_date(self, event_name: str) -> str:
             if length_to_event - 30 > value:
                 continue
         return f"{month} {day_of_event}"
-    
-
-    

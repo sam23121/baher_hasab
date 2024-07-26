@@ -1,7 +1,6 @@
 import unittest
 from baher_hasab.baher_hasab import BaherHasab
-from baher_hasab.helper import add_days, gregorian_to_ethiopian, ethiopian_to_gregorian
-
+from src.helper import add_days, gregorian_to_ethiopian, ethiopian_to_gregorian
 
 
 class TestBaherHasab(unittest.TestCase):
@@ -13,7 +12,6 @@ class TestBaherHasab(unittest.TestCase):
         self.year_highest = BaherHasab(given_year=1975)
         self.year_edge = BaherHasab(given_year=1967)
 
-    
     def test_gregorian_to_ethiopian(self):
         self.assertEqual(gregorian_to_ethiopian(2024, 7, 31), (2016, 11, 24))
         self.assertEqual(gregorian_to_ethiopian(2023, 9, 11), (2015, 13, 6))
@@ -34,8 +32,6 @@ class TestBaherHasab(unittest.TestCase):
         self.assertEqual(ethiopian_to_gregorian(2013, 1, 30), (2020, 10, 10))
         self.assertEqual(ethiopian_to_gregorian(2014, 13, 5), (2022, 9, 10))
         # self.assertEqual(ethiopian_to_gregorian(2013, 13, 5), (2021, 9, 10))
-
-
 
     def test_get_total_years(self):
         result = self.year_random.get_total_years()

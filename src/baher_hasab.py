@@ -1,5 +1,19 @@
-from baher_hasab.lookups import DaysBookmark, EletTewsak, FastStartingDays, Wengelawyan, EthiopianCalendarMonths
-from baher_hasab.helper import add_days, get_total_days, get_day_of_week, calculate_days_to_nenewe, calculate_event_date, calculate_ethiopian_to_gregorian, calculate_gregorian_to_ethiopian
+from lookups import (
+    DaysBookmark,
+    EletTewsak,
+    FastStartingDays,
+    Wengelawyan,
+    EthiopianCalendarMonths,
+)
+from helper import (
+    add_days,
+    get_total_days,
+    get_day_of_week,
+    calculate_days_to_nenewe,
+    calculate_event_date,
+    calculate_ethiopian_to_gregorian,
+    calculate_gregorian_to_ethiopian,
+)
 from typing import Tuple
 
 
@@ -9,7 +23,7 @@ class BaherHasab:
         Initialize the BaherHasab class with the given current year.
 
         Args:
-            given_year (int): The current year in the Ethiopian calendar (its 7 or 8 years less than the 
+            given_year (int): The current year in the Ethiopian calendar (its 7 or 8 years less than the
                                     Geogorian calendar depending on the season of the year).
         """
         self.abiy_kemer = 532  # also known as abiy awde
@@ -72,7 +86,6 @@ class BaherHasab:
         first_day = (total_years + (total_years // 4)) % 7
         return DaysBookmark().reverse_mapping[first_day]
 
-
     def get_nenewe(self) -> Tuple[int, int]:
         """
         Calculate the nenewe day and Metke month based on the Metke value.
@@ -88,7 +101,11 @@ class BaherHasab:
 
         nenewe_day = (metke_month + metke + day_of_nenewe) % 30
 
-        print(f"Tir {nenewe_day}" if day_of_nenewe + metke <= 30 and metke_month == 0 else f"Yekatit {nenewe_day}")
+        print(
+            f"Nenewe Starts at Tir {nenewe_day}"
+            if day_of_nenewe + metke <= 30 and metke_month == 0
+            else f"Nenewe Starts at Yekatit {nenewe_day}"
+        )
 
         return nenewe_day, metke_month
 
@@ -107,7 +124,6 @@ class BaherHasab:
         metke = self.get_metke()
         nenewe_day, metke_month = self.get_nenewe()
 
-
         # Total days from all years including B.C and A.D
         total_days = get_total_days(total_years)
         # Total days from all years including B.C and A.D till the metke of the year
@@ -116,12 +132,13 @@ class BaherHasab:
         day_of_week_of_metke = get_day_of_week(total_days_till_metke)
         # Getting the Twesak of each event
         nenewe_to_event_length = getattr(FastStartingDays(), event_name)
-       
+
         days_to_nenewe = calculate_days_to_nenewe(day_of_week_of_metke)
-        month_of_event, day_of_event = calculate_event_date(total_days_till_metke, days_to_nenewe, nenewe_to_event_length, total_days)
+        month_of_event, day_of_event = calculate_event_date(
+            total_days_till_metke, days_to_nenewe, nenewe_to_event_length, total_days
+        )
 
         return f"{EthiopianCalendarMonths().reverse_mapping[month_of_event]} {day_of_event}"
-
 
     def get_hudade(self) -> str:
         """
@@ -212,7 +229,7 @@ class BaherHasab:
             str: The date of Dehenet fast.
         """
         return self.get_event_date("dehenet")
-    
+
     def get_wengelawyan(self) -> str:
         """
         Get the gospel of the year.
@@ -222,14 +239,14 @@ class BaherHasab:
         """
         gospels = self.given_year % 4
         return Wengelawyan().reverse_mapping[gospels]
-    
+
     def get_awde_kemer(self) -> Tuple[int, int, int]:
         """
         Get the awde kemer.
 
         Returns:
             int: the ith awde kemer we are at (based on the given year)
-            int: the past years in the awde kemer 
+            int: the past years in the awde kemer
             int: the years left for the awde kemer to finish
         """
         total_years = self.get_total_years()
@@ -240,14 +257,14 @@ class BaherHasab:
               have gone through {passed_years} years \n
               and have {reminded_years} years left""")
         return ith_abiy_kemer, passed_years, reminded_years
-    
+
     def get_awde_mahtot(self) -> Tuple[int, int, int]:
         """
         Get the awde mahtot.
 
         Returns:
             int: the ith awde mahtot we are at (based on the given year)
-            int: the past years in the awde mahtot 
+            int: the past years in the awde mahtot
             int: the years left for the awde mahtot to finish
         """
         total_years = self.get_total_years()
@@ -258,14 +275,14 @@ class BaherHasab:
               have gone through {passed_years} years \n
               and have {reminded_years} years left""")
         return ith_awde_mahtot, passed_years, reminded_years
-    
+
     def get_awde_tsehay(self) -> Tuple[int, int, int]:
         """
         Get the awde tsehay.
 
         Returns:
             int: the ith awde tsehay we are at (based on the given year)
-            int: the past years in the awde tsehay 
+            int: the past years in the awde tsehay
             int: the years left for the awde tsehay to finish
         """
         total_years = self.get_total_years()
@@ -276,9 +293,10 @@ class BaherHasab:
               have gone through {passed_years} years \n
               and have {reminded_years} years left""")
         return ith_awde_tsehay, passed_years, reminded_years
-    
 
-    def ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, ethiopian_day: int) -> tuple[int, int, int]:
+    def ethiopian_to_gregorian(
+        ethiopian_year: int, ethiopian_month: int, ethiopian_day: int
+    ) -> tuple[int, int, int]:
         """Convert an Ethiopian date to a Gregorian date.
 
         Args:
@@ -290,9 +308,13 @@ class BaherHasab:
             Tuple[int, int, int]: The Gregorian year, month, and day.
         """
 
-        return calculate_ethiopian_to_gregorian(ethiopian_year, ethiopian_month, ethiopian_day)
-    
-    def gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, gregorian_day: int) -> tuple[int, int, int]:
+        return calculate_ethiopian_to_gregorian(
+            ethiopian_year, ethiopian_month, ethiopian_day
+        )
+
+    def gregorian_to_ethiopian(
+        gregorian_year: int, gregorian_month: int, gregorian_day: int
+    ) -> tuple[int, int, int]:
         """Convert a Gregorian date to an Ethiopian date.
 
         Args:
@@ -303,5 +325,6 @@ class BaherHasab:
         Returns:
             Tuple[int, int, int]: The Ethiopian year, month, and day.
         """
-        return calculate_gregorian_to_ethiopian(gregorian_year, gregorian_month, gregorian_day)
-
+        return calculate_gregorian_to_ethiopian(
+            gregorian_year, gregorian_month, gregorian_day
+        )

@@ -1,0 +1,6 @@
+site_name: Baher_Hasab Docs
+nav:
+  - About: about.md
+  - BaherHasab: baherhasab.md
+theme: readthedocs
+

@@ -1,0 +1,31 @@
+
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "baher_hasab"
+version = "1.0.1"
+description = "A python package for calculating Ethiopian holidays and fasting seasons"
+readme = "README.md"
+authors = [{ name = "Samuel", email = "smlalene@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["baher_hasab", "abushar", "ethiopia"]
+
+requires-python = ">=3.7"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["*.py", "*.ipynb", "__pycache__", "*.pyc", ".ruff_cache", ".pytest_cache", ".gitignore", "docs", "mkdocs.yml", "site", "LICENSE"]
+
+
+
+[project.urls]
+Homepage = "https://github.com/sam23121/baher_hasab"
+Docs = "https://sam23121.github.io/baher_hasab/"
+
