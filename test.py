@@ -1,5 +1,7 @@
 import unittest
 from baher_hasab.baher_hasab import BaherHasab
+from baher_hasab.helper import add_days, gregorian_to_ethiopian, ethiopian_to_gregorian
+
 
 
 class TestBaherHasab(unittest.TestCase):
@@ -10,6 +12,30 @@ class TestBaherHasab(unittest.TestCase):
         self.year_lowest = BaherHasab(given_year=1972)
         self.year_highest = BaherHasab(given_year=1975)
         self.year_edge = BaherHasab(given_year=1967)
+
+    
+    def test_gregorian_to_ethiopian(self):
+        self.assertEqual(gregorian_to_ethiopian(2024, 7, 31), (2016, 11, 24))
+        self.assertEqual(gregorian_to_ethiopian(2023, 9, 11), (2015, 13, 6))
+        self.assertEqual(gregorian_to_ethiopian(2023, 9, 12), (2016, 1, 1))
+        self.assertEqual(gregorian_to_ethiopian(2024, 9, 11), (2017, 1, 1))
+        self.assertEqual(gregorian_to_ethiopian(2024, 9, 10), (2016, 13, 5))
+        self.assertEqual(gregorian_to_ethiopian(2024, 4, 30), (2016, 8, 22))
+        self.assertEqual(gregorian_to_ethiopian(2020, 10, 10), (2013, 1, 30))
+        self.assertEqual(gregorian_to_ethiopian(2021, 9, 10), (2013, 13, 5))
+
+    def test_ethiopian_to_gregorian(self):
+        self.assertEqual(ethiopian_to_gregorian(2016, 11, 24), (2024, 7, 31))
+        self.assertEqual(ethiopian_to_gregorian(2015, 13, 6), (2023, 9, 11))
+        self.assertEqual(ethiopian_to_gregorian(2016, 1, 1), (2023, 9, 12))
+        self.assertEqual(ethiopian_to_gregorian(2017, 1, 1), (2024, 9, 11))
+        self.assertEqual(ethiopian_to_gregorian(2016, 13, 5), (2024, 9, 10))
+        self.assertEqual(ethiopian_to_gregorian(2019, 8, 22), (2027, 4, 30))
+        self.assertEqual(ethiopian_to_gregorian(2013, 1, 30), (2020, 10, 10))
+        self.assertEqual(ethiopian_to_gregorian(2014, 13, 5), (2022, 9, 10))
+        # self.assertEqual(ethiopian_to_gregorian(2013, 13, 5), (2021, 9, 10))
+
+
 
     def test_get_total_years(self):
         result = self.year_random.get_total_years()
@@ -97,30 +123,30 @@ class TestBaherHasab(unittest.TestCase):
 
     def test_get_first_day_of_year(self):
         result = self.year_random.get_first_day_of_year()
-        expected = "thursday"  # Calculation based on 5516 total years
-        self.assertEqual(result, expected, "First day of year should be 'thursday'")
+        expected = "Thursday"  # Calculation based on 5516 total years
+        self.assertEqual(result, expected, "First day of year should be 'Thursday'")
 
         result = self.year_lowest.get_first_day_of_year()
-        expected = "wednesday"  # Calculation based on 5516 total years
-        self.assertEqual(result, expected, "First day of year should be 'wednesday'")
+        expected = "Wednesday"  # Calculation based on 5516 total years
+        self.assertEqual(result, expected, "First day of year should be 'Wednesday'")
 
         result = self.year_highest.get_first_day_of_year()
-        expected = "saturday"  # Calculation based on 5516 total years
-        self.assertEqual(result, expected, "First day of year should be 'saturday'")
+        expected = "Saturday"  # Calculation based on 5516 total years
+        self.assertEqual(result, expected, "First day of year should be 'Saturday'")
 
         result = self.year_current.get_first_day_of_year()
-        expected = "tuesday"  # Calculation based on 5516 total years
-        self.assertEqual(result, expected, "First day of year should be 'tuesday'")
+        expected = "Tuesday"  # Calculation based on 5516 total years
+        self.assertEqual(result, expected, "First day of year should be 'Tuesday'")
 
         result = self.year_edge.get_first_day_of_year()
-        expected = "wednesday"  # Calculation based on 5516 total years
-        self.assertEqual(result, expected, "First day of year should be 'wednesday'")
+        expected = "Wednesday"  # Calculation based on 5516 total years
+        self.assertEqual(result, expected, "First day of year should be 'Wednesday'")
 
     def test_add_days(self):
-        result = self.year_random.add_days("thursday", 36)
-        expected = "friday"
+        result = add_days("Thursday", 36)
+        expected = "Friday"
         self.assertEqual(
-            result, expected, "Adding 37 days to 'thursday' should give 'friday'"
+            result, expected, "Adding 37 days to 'Thursday' should give 'Friday'"
         )
 
         # result = self.year_lowest.add_days('thursday', 36)
