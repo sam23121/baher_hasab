@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>BaherHasab - Baher_Hasab Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "BaherHasab";
+        var mkdocs_page_input_path = "baherhasab.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Baher_Hasab Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">BaherHasab</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#__init__self-given_year-int-2016-none">__init__(self, given_year: int = 2016) -&gt; None</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#args">Args:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example">Example:</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#baher-haseb-methods">Baher haseb Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#get_total_yearsself-int">get_total_years(self) -&gt; int</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_1">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_wemberself-int">get_wember(self) -&gt; int</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_1">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_2">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_abketaself-int">get_abketa(self) -&gt; int</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_2">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_3">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_metkeself-int">get_metke(self) -&gt; int</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_3">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_4">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_first_day_of_yearself-str">get_first_day_of_year(self) -&gt; str</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_4">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_5">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_neneweself-tupleint-int">get_nenewe(self) -&gt; Tuple[int, int]</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_5">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_6">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_event_dateself-event_name-str-str">get_event_date(self, event_name: str) -&gt; str</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#args_1">Args:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_6">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_7">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_wengelawyanself-str">get_wengelawyan(self) -&gt; str</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_7">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_8">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_awde_kemerself-tupleint-int-int">get_awde_kemer(self) -&gt; Tuple[int, int, int]:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_8">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_9">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_awde_mahtotself-tupleint-int-int">get_awde_mahtot(self) -&gt; Tuple[int, int, int]:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_9">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_10">Example:</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get_awde_tsehayself-tupleint-int-int">get_awde_tsehay(self) -&gt; Tuple[int, int, int]:</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#returns_10">Returns:</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#example_11">Example:</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#calendar-converter-methods">Calendar Converter Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#ethiopian_to_gregorianethiopian_year-int-ethiopian_month-int-ethiopian_day-int-tupleint-int-int">ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, ethiopian_day: int) -&gt; tuple[int, int, int]:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#args_2">Args:</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Baher_Hasab Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">BaherHasab</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="baherhasab-class">BaherHasab Class</h1>
+<p>The <code>BaherHasab</code> class is used to perform calculations related to the Ethiopian calendar, specifically for calculating the total years since the creation of the world, the Wember value, and the Abketa value.</p>
+<h2 id="initialization">Initialization</h2>
+<h3 id="__init__self-given_year-int-2016-none"><code>__init__(self, given_year: int = 2016) -&gt; None</code></h3>
+<p>Initializes the <code>BaherHasab</code> class with the given current year.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><code>given_year</code> (int): The current year in the Ethiopian calendar (7 or 8 years less than the Gregorian calendar depending on the season of the year).</li>
+</ul>
+<h4 id="example">Example:</h4>
+<pre><code class="language-python">baher_hasab = BaherHasab(given_year=2016)
+</code></pre>
+<h2 id="baher-haseb-methods">Baher haseb Methods</h2>
+<h3 id="get_total_yearsself-int"><code>get_total_years(self) -&gt; int</code></h3>
+<p>Calculates the total years since the creation of the world according to the Ethiopian calendar.</p>
+<h4 id="returns">Returns:</h4>
+<p>int: The total number of years.</p>
+<h4 id="example_1">Example:</h4>
+<pre><code class="language-python">total_years = baher_hasab.get_total_years()
+print(total_years)  # Outputs 7516
+</code></pre>
+<h3 id="get_wemberself-int"><code>get_wember(self) -&gt; int</code></h3>
+<p>Calculates the Wember value for the current year. (We subtract one because the year has started, not finished).</p>
+<h4 id="returns_1">Returns:</h4>
+<p>int: The Wember value.</p>
+<h4 id="example_2">Example:</h4>
+<pre><code class="language-python">wember = baher_hasab.get_wember()
+print(wember)  # Outputs '6'
+</code></pre>
+<h3 id="get_abketaself-int"><code>get_abketa(self) -&gt; int</code></h3>
+<p>Calculates the Abketa value based on the Wember value.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>int: The Abketa value.</p>
+<h4 id="example_3">Example:</h4>
+<pre><code class="language-python">abketa = baher_hasab.get_abketa()
+print(abketa)  # Outputs '13'
+</code></pre>
+<h3 id="get_metkeself-int"><code>get_metke(self) -&gt; int</code></h3>
+<p>Calculates the Metke value based on the Abketa value.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>int: The Metke value.</p>
+<h4 id="example_4">Example:</h4>
+<pre><code class="language-python">metke = baher_hasab.get_metke()
+print(metke)  # Outputs the Metke value 17
+</code></pre>
+<h3 id="get_first_day_of_yearself-str"><code>get_first_day_of_year(self) -&gt; str</code></h3>
+<p>Calculates the first day of the year according to the Ethiopian calendar.</p>
+<h4 id="returns_4">Returns:</h4>
+<p>str: The first day of the year</p>
+<h4 id="example_5">Example:</h4>
+<pre><code class="language-python">first_day = baher_hasab.get_first_day_of_year()
+print(first_day)  # Outputs 'Wednesday'
+</code></pre>
+<h3 id="get_neneweself-tupleint-int"><code>get_nenewe(self) -&gt; Tuple[int, int]</code></h3>
+<p>Calculates the nenewe date and Metke month based on the Metke value.</p>
+<h4 id="returns_5">Returns:</h4>
+<p>int: The Day of the Nenewe Fast of the year
+int: The Month of the mekte (0 if it is the first month, 30 if it is the second month)</p>
+<h4 id="example_6">Example:</h4>
+<pre><code class="language-python">date, metke_month = baher_hasab.get_nenewe()
+print(date, metke_month)  # Outputs 9 30
+</code></pre>
+<h3 id="get_event_dateself-event_name-str-str"><code>get_event_date(self, event_name: str) -&gt; str</code></h3>
+<p>Calculates the date of an event based on the nenewe date and the length to the event.</p>
+<h4 id="args_1">Args:</h4>
+<p>str: event of the year. it has to be from the following ones
+- hudade
+- debrezeit
+- hosana
+- seklet
+- tensae
+- rekeb_kanat
+- erget 
+- piraklitos
+- hawaryat
+- dehenet</p>
+<h4 id="returns_6">Returns:</h4>
+<p>str: The Date of the Event</p>
+<h4 id="example_7">Example:</h4>
+<pre><code class="language-python">date = baher_hasab.get_event_date('hudade')
+print(date)  # Outputs Tir 30
+</code></pre>
+<h3 id="get_wengelawyanself-str"><code>get_wengelawyan(self) -&gt; str</code></h3>
+<p>Get the gospel of the year</p>
+<h4 id="returns_7">Returns:</h4>
+<p>str: The Gospel of the year. It has to be one of 
+- Matthew
+- Luke
+- Mark
+- John</p>
+<h4 id="example_8">Example:</h4>
+<pre><code class="language-python">gospel = baher_hasab.get_wengelawyan()
+print(gospel)  # Outputs John
+</code></pre>
+<h3 id="get_awde_kemerself-tupleint-int-int"><code>get_awde_kemer(self) -&gt; Tuple[int, int, int]:</code></h3>
+<p>Gets the awde kemer of the year. In other other words on which year we are in the 532 cycle</p>
+<h4 id="returns_8">Returns:</h4>
+<p>int: the ith awde kemer we are at (based on the given year)
+int: the past years in the awde kemer 
+int: the years left for the awde kemer to finish</p>
+<h4 id="example_9">Example:</h4>
+<pre><code class="language-python">ith_awde_kemer, past_years, left_years = baher_hasab.get_awde_kemer()
+print(ith_awde_kemer, past_years, left_years)  # Outputs 14, 332, 200
+</code></pre>
+<h3 id="get_awde_mahtotself-tupleint-int-int"><code>get_awde_mahtot(self) -&gt; Tuple[int, int, int]:</code></h3>
+<p>Gets the Awde Mahtot of the year. In other other words on which year we are in the 76 cycle</p>
+<h4 id="returns_9">Returns:</h4>
+<p>int: the ith awde mahtot we are at (based on the given year)
+int: the past years in the awde mahtot 
+int: the years left for the awde mahtot to finish</p>
+<h4 id="example_10">Example:</h4>
+<pre><code class="language-python">ith_awde_mahtot, past_years, left_years = baher_hasab.get_awde_mahtot()
+print(ith_awde_mahtot, past_years, left_years)  # Outputs 30, 40, 36
+</code></pre>
+<h3 id="get_awde_tsehayself-tupleint-int-int"><code>get_awde_tsehay(self) -&gt; Tuple[int, int, int]:</code></h3>
+<p>Gets the awde tsehay of the year. In other other words on which year we are in the 28 cycle</p>
+<h4 id="returns_10">Returns:</h4>
+<p>int: the ith awde tsehay we are at (based on the given year)
+int: the past years in the awde tsehay 
+int: the years left for the awde tsehay to finish</p>
+<h4 id="example_11">Example:</h4>
+<pre><code class="language-python">ith_awde_tsehay, past_years, left_years = baher_hasab.get_awde_tsehay()
+print(ith_awde_tsehay, past_years, left_years)  # Outputs 140, 18, 10
+</code></pre>
+<h2 id="calendar-converter-methods">Calendar Converter Methods</h2>
+<h3 id="ethiopian_to_gregorianethiopian_year-int-ethiopian_month-int-ethiopian_day-int-tupleint-int-int"><code>ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, ethiopian_day: int) -&gt; tuple[int, int, int]:</code></h3>
+<p>Convert an Ethiopian date to a Gregorian date.</p>
+<h3 id="args_2">Args:</h3>
+<p>ethiopian_year (int): The Ethiopian year.
+ethiopian_month (int): The Ethiopian month.
+ethiopian_day (int): The Ethiopian day.</p>
+<h1 id="returns_11">Returns:</h1>
+<p>Tuple[int, int, int]: The Gregorian year, month, and day.</p>
+<h4 id="example_12">Example:</h4>
+<pre><code class="language-python">gregorian_year, gregorian_month, gregorian_day = baher_hasab.ethiopian_to_gregorian(2016, 11, 18)
+print(gregorian_year, gregorian_month, gregorian_day)  # Outputs 2024, 7, 25
+</code></pre>
+<h3 id="gregorian_to_ethiopiangregorian_year-int-gregorian_month-int-gregorian_day-int-tupleint-int-int"><code>gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, gregorian_day: int) -&gt; tuple[int, int, int]:</code></h3>
+<p>Convert a Gregorian date to an Ethiopian date.</p>
+<h4 id="args_3">Args:</h4>
+<p>gregorian_year (int): The Gregorian year.
+gregorian_month (int): The Gregorian month.
+gregorian_day (int): The Gregorian day.</p>
+<h4 id="returns_12">Returns:</h4>
+<p>Tuple[int, int, int]: The Ethiopian year, month, and day.</p>
+<h4 id="example_13">Example:</h4>
+<pre><code class="language-python">ethiopian_year, ethiopian_month, ethiopian_day = baher_hasab.gregorian_to_ethiopian(2024, 7, 25)
+print(ethiopian_year, ethiopian_month, ethiopian_day)  # Outputs 2016, 11, 18
+</code></pre>
+<h2 id="attributes">Attributes</h2>
+<h5 id="abiy_kemer">abiy_kemer</h5>
+<ul>
+<li>Value: 532</li>
+<li>Description: Also known as abiy awde.</li>
+</ul>
+<h5 id="awde_mahtot">awde_mahtot</h5>
+<ul>
+<li>Value: 76</li>
+<li>Description: Also known as mahkelawi awde.</li>
+</ul>
+<h5 id="awde_tsehay">awde_tsehay</h5>
+<ul>
+<li>Value: 28</li>
+<li>Description: Also known as nuhase awde.</li>
+</ul>
+<h5 id="awde_abketa">awde_abketa</h5>
+<ul>
+<li>Value: 19</li>
+</ul>
+<h5 id="old_abketa">old_abketa</h5>
+<ul>
+<li>Value: 11</li>
+</ul>
+<h5 id="amet_alem">amet_alem</h5>
+<ul>
+<li>Value: 5500</li>
+<li>Description: Years before Christ</li>
+</ul>
+<h5 id="given_year">given_year</h5>
+<ul>
+<li>Value: The given year passed during initialization.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../about/" class="btn btn-neutral float-left" title="About"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
