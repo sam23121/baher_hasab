@@ -13,31 +13,31 @@ class ReverseMapping:
 
 @dataclass(frozen=True)
 class DaysBookmark(ReverseMapping):
-    monday: int = 0
-    tuesday: int = 1
-    wednesday: int = 2
-    thursday: int = 3
-    friday: int = 4
-    saturday: int = 5
-    sunday: int = 6
+    Monday: int = 0
+    Tuesday: int = 1
+    Wednesday: int = 2
+    Thursday: int = 3
+    Friday: int = 4
+    Saturday: int = 5
+    Sunday: int = 6
 
 
 @dataclass(frozen=True)
 class EletTewsak(ReverseMapping):
-    saturday: int = 8
-    sunday: int = 7
-    monday: int = 6
-    tuesday: int = 5
-    wednesday: int = 4
-    thursday: int = 3
-    friday: int = 2
+    Saturday: int = 8
+    Sunday: int = 7
+    Monday: int = 6
+    Tuesday: int = 5
+    Wednesday: int = 4
+    Thursday: int = 3
+    Friday: int = 2
 
 @dataclass(frozen=True)
 class Wengelawyan(ReverseMapping):
-    matthew: int = 1
-    mark: int = 2
-    luke: int = 3
-    john: int = 0
+    Matthew: int = 1
+    Mark: int = 2
+    Luke: int = 3
+    John: int = 0
 
 
 @dataclass(frozen=True)

@@ -1,4 +1,5 @@
-from baher_hasab.lookups import DaysBookmark, EletTewsak, FastStartingDays, MonthForFasting, Wengelawyan, EthiopianCalendarMonths
+from baher_hasab.lookups import DaysBookmark, EletTewsak, FastStartingDays, Wengelawyan, EthiopianCalendarMonths
+from baher_hasab.helper import add_days, get_total_days, get_day_of_week, calculate_days_to_nenewe, calculate_event_date, calculate_ethiopian_to_gregorian, calculate_gregorian_to_ethiopian
 from typing import Tuple
 
 
@@ -71,29 +72,6 @@ class BaherHasab:
         first_day = (total_years + (total_years // 4)) % 7
         return DaysBookmark().reverse_mapping[first_day]
 
-    def add_days(self, day: str, num_days: int) -> str:
-        """
-        Adds the given number of days to the specified day of the week and returns the resulting day.
-
-        Args:
-            day (str): The day of the week (e.g., 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday').
-            num_days (int): The number of days to add.
-
-        Returns:
-            str: The resulting day of the week.
-        """
-        days_of_the_week = [
-            "monday",
-            "tuesday",
-            "wednesday",
-            "thursday",
-            "friday",
-            "saturday",
-            "sunday",
-        ]
-        day_index = days_of_the_week.index(day)
-        new_index = (day_index + num_days) % len(days_of_the_week)
-        return days_of_the_week[new_index]
 
     def get_nenewe(self) -> Tuple[int, int]:
         """
@@ -103,66 +81,17 @@ class BaherHasab:
             Tuple[int, int]: The nenewe day and Metke month.
         """
         metke = self.get_metke()
-        print('Metke', metke)
         metke_month = 0 if metke > 13 else 30
         first_day = self.get_first_day_of_year()
-        print("first day", first_day)
-        day_of_metke = self.add_days(first_day, metke_month + metke - 1)
-        print("day_of_metke", day_of_metke)
-
+        day_of_metke = add_days(first_day, metke_month + metke - 1)
         day_of_nenewe = getattr(EletTewsak, day_of_metke)
-        print("day_of_nenewe", day_of_nenewe)
 
         nenewe_day = (metke_month + metke + day_of_nenewe) % 30
-        print("nenewe_day", nenewe_day)
 
         print(f"Tir {nenewe_day}" if day_of_nenewe + metke <= 30 and metke_month == 0 else f"Yekatit {nenewe_day}")
 
         return nenewe_day, metke_month
 
-    def get_length_between(self, nenewe: int, fast: str) -> Tuple[int, int]:
-        """
-        Calculate the length between the nenewe day and the start of a fast.
-
-        Args:
-            nenewe (int): The nenewe day.
-            fast (str): The name of the fast.
-
-        Returns:
-            Tuple[int, int]: The total length and the day of the event.
-        """
-        length_from_nenewe = getattr(FastStartingDays, fast) + nenewe
-        day = 30 if (length_from_nenewe) % 30 == 0 else (length_from_nenewe) % 30
-
-        return length_from_nenewe, day
-
-    # def get_event_date(self, event_name: str) -> str:
-    #     """
-    #     Calculate the date of an event based on the nenewe day and the length to the event.
-
-    #     Args:
-    #         event_name (str): The name of the event.
-
-    #     Returns:
-    #         str: The date of the event.
-    #     """
-    #     nenewe, metke_month = self.get_nenewe()
-    #     length_to_event, day_of_event = self.get_length_between(nenewe, event_name)
-
-    #     months = MonthForFasting()
-    #     months = getattr(months, event_name)
-
-    #     # min_value = min(months.values())
-
-    #     for month, value in months.items():
-    #         if metke_month > 0:
-    #             if length_to_event > value:
-    #                 continue
-    #         else:
-    #             if length_to_event - 30 > value:
-    #                 continue
-    #         return f"{month} {day_of_event}"
-        
     def get_event_date(self, event_name: str) -> str:
         """
         Calculate the date of an event based on the nenewe day and the length to the event.
@@ -173,75 +102,25 @@ class BaherHasab:
         Returns:
             str: The date of the event.
         """
-        # Step 1-2
-        total_years = self.get_total_years()
-        # print("Step 2", total_years)
-        
 
-        # Step 3-6
+        total_years = self.get_total_years()
         metke = self.get_metke()
         nenewe_day, metke_month = self.get_nenewe()
-        # print("Step 5", metke)
-        # print("Step 6", metke_month)
 
 
-        # Step 7
-        year_fractions = total_years // 4
-        # print("Step 7", year_fractions)
-
-        # total days from all years including B.C and A.D
-        # Step 8
-        total_days = (total_years-1)*365 + year_fractions
-        # print("Step 8", total_days)
-
-        months = FastStartingDays()
-        tewsak_of_event = getattr(months, event_name)
-        # print("tewsak", tewsak_of_event)
-
-
+        # Total days from all years including B.C and A.D
+        total_days = get_total_days(total_years)
         # Total days from all years including B.C and A.D till the metke of the year
-        # Step 10
         total_days_till_metke = total_days + metke_month + metke
-        # print("Step 10", total_days_till_metke)
 
-        # This is the day of the week where the metke will land given that year 
-        # Step 11
-        day_of_week_of_metke = (total_days_till_metke % 7) + 1
-        # print("Step 11", day_of_week_of_metke)
+        day_of_week_of_metke = get_day_of_week(total_days_till_metke)
+        # Getting the Twesak of each event
+        nenewe_to_event_length = getattr(FastStartingDays(), event_name)
+       
+        days_to_nenewe = calculate_days_to_nenewe(day_of_week_of_metke)
+        month_of_event, day_of_event = calculate_event_date(total_days_till_metke, days_to_nenewe, nenewe_to_event_length, total_days)
 
-        # this is the length of days from the metke to the start 
-        # of nenewe fast (which is vital to the rest of events)
-        # Step 12
-        days_to_nenewe = 128 - ((day_of_week_of_metke+1)  % 7) + 1
-        # print("Step 12", days_to_nenewe)
-
-        # To find the tewsak of the event
-        # Step 13
-        day_of_event_starting_from_the_start = total_days_till_metke + days_to_nenewe + tewsak_of_event
-        # print("Step 13", day_of_event_starting_from_the_start)
-
-
-        # Month of the event
-        # Step 14
-        month_of_event = ((day_of_event_starting_from_the_start - total_days - 1) // 30) + 1
-        if (day_of_event_starting_from_the_start - total_days - 1) // 30 == (day_of_event_starting_from_the_start - total_days - 1) / 30:
-            month_of_event = (day_of_event_starting_from_the_start - total_days - 1) // 30
-        # print("Step 14", month_of_event)
-
-        # Step 15
-        day_of_event = ((day_of_event_starting_from_the_start - total_days - 1) % 30)
-        if day_of_event == 0:
-            day_of_event = 30
-        # print("Step 15", day_of_event)
-
-        # Step 16
-        day_of_week_event =  DaysBookmark().reverse_mapping[6 if (day_of_event_starting_from_the_start % 7) == 0 else (day_of_event_starting_from_the_start % 7) - 1]
-        # print("Step 16", day_of_week_event)
-
-        
-        
         return f"{EthiopianCalendarMonths().reverse_mapping[month_of_event]} {day_of_event}"
-        
 
 
     def get_hudade(self) -> str:
@@ -397,3 +276,32 @@ class BaherHasab:
               have gone through {passed_years} years \n
               and have {reminded_years} years left""")
         return ith_awde_tsehay, passed_years, reminded_years
+    
+
+    def ethiopian_to_gregorian(ethiopian_year: int, ethiopian_month: int, ethiopian_day: int) -> tuple[int, int, int]:
+        """Convert an Ethiopian date to a Gregorian date.
+
+        Args:
+            ethiopian_year (int): The Ethiopian year.
+            ethiopian_month (int): The Ethiopian month.
+            ethiopian_day (int): The Ethiopian day.
+
+        Returns:
+            Tuple[int, int, int]: The Gregorian year, month, and day.
+        """
+
+        return calculate_ethiopian_to_gregorian(ethiopian_year, ethiopian_month, ethiopian_day)
+    
+    def gregorian_to_ethiopian(gregorian_year: int, gregorian_month: int, gregorian_day: int) -> tuple[int, int, int]:
+        """Convert a Gregorian date to an Ethiopian date.
+
+        Args:
+            gregorian_year (int): The Gregorian year.
+            gregorian_month (int): The Gregorian month.
+            gregorian_day (int): The Gregorian day.
+
+        Returns:
+            Tuple[int, int, int]: The Ethiopian year, month, and day.
+        """
+        return calculate_gregorian_to_ethiopian(gregorian_year, gregorian_month, gregorian_day)
+
