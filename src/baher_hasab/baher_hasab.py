@@ -1,11 +1,11 @@
-from lookups import (
+from .lookups import (
     DaysBookmark,
     EletTewsak,
     FastStartingDays,
     Wengelawyan,
     EthiopianCalendarMonths,
 )
-from helper import (
+from .helper import (
     add_days,
     get_total_days,
     get_day_of_week,
@@ -137,6 +137,7 @@ class BaherHasab:
         month_of_event, day_of_event = calculate_event_date(
             total_days_till_metke, days_to_nenewe, nenewe_to_event_length, total_days
         )
+
 
         return f"{EthiopianCalendarMonths().reverse_mapping[month_of_event]} {day_of_event}"
 
@@ -295,7 +296,7 @@ class BaherHasab:
         return ith_awde_tsehay, passed_years, reminded_years
 
     def ethiopian_to_gregorian(
-        ethiopian_year: int, ethiopian_month: int, ethiopian_day: int
+        self, ethiopian_year: int, ethiopian_month: int, ethiopian_day: int
     ) -> tuple[int, int, int]:
         """Convert an Ethiopian date to a Gregorian date.
 
@@ -313,7 +314,7 @@ class BaherHasab:
         )
 
     def gregorian_to_ethiopian(
-        gregorian_year: int, gregorian_month: int, gregorian_day: int
+        self, gregorian_year: int, gregorian_month: int, gregorian_day: int
     ) -> tuple[int, int, int]:
         """Convert a Gregorian date to an Ethiopian date.
 

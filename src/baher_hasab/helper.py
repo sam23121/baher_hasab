@@ -1,4 +1,4 @@
-from lookups import FastStartingDays, MonthForFasting
+from .lookups import FastStartingDays, MonthForFasting
 from typing import Tuple
 
 

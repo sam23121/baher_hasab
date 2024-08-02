@@ -1,6 +1,6 @@
 import unittest
 from baher_hasab.baher_hasab import BaherHasab
-from src.helper import add_days, gregorian_to_ethiopian, ethiopian_to_gregorian
+from baher_hasab.helper import add_days, gregorian_to_ethiopian, ethiopian_to_gregorian
 
 
 class TestBaherHasab(unittest.TestCase):
