@@ -86,7 +86,7 @@ class BaherHasab:
         first_day = (total_years + (total_years // 4)) % 7
         return DaysBookmark().reverse_mapping[first_day]
 
-    def get_nenewe(self) -> Tuple[int, int]:
+    def get_nenewe_date(self) -> Tuple[int, int]:
         """
         Calculate the nenewe day and Metke month based on the Metke value.
 
@@ -101,13 +101,28 @@ class BaherHasab:
 
         nenewe_day = (metke_month + metke + day_of_nenewe) % 30
 
-        print(
+        return nenewe_day, metke_month
+    
+
+    def get_nenewe(self) -> Tuple[int, int]:
+        """
+        Calculate the nenewe day and Metke month based on the Metke value.
+
+        Returns:
+            Tuple[int, int]: The nenewe day and Metke month.
+        """
+        nenewe_day, metke_month = self.get_nenewe_date()
+        metke = self.get_metke()
+        first_day = self.get_first_day_of_year()
+        day_of_metke = add_days(first_day, metke_month + metke - 1)
+        day_of_nenewe = getattr(EletTewsak, day_of_metke)
+
+        
+        return (
             f"Nenewe Starts at Tir {nenewe_day}"
             if day_of_nenewe + metke <= 30 and metke_month == 0
             else f"Nenewe Starts at Yekatit {nenewe_day}"
-        )
-
-        return nenewe_day, metke_month
+            )
 
     def get_event_date(self, event_name: str) -> str:
         """
@@ -122,7 +137,7 @@ class BaherHasab:
 
         total_years = self.get_total_years()
         metke = self.get_metke()
-        nenewe_day, metke_month = self.get_nenewe()
+        nenewe_day, metke_month = self.get_nenewe_date()
 
         # Total days from all years including B.C and A.D
         total_days = get_total_days(total_years)
