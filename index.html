@@ -39,8 +39,24 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="" href="about.md">About</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">About</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#links">Links</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contribution">Contribution</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note">Note</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -70,14 +86,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="about">About</h1>
+                <h1 id="baher-hasab">Baher Hasab (ባህረ ሃሳብ) 🇪🇹</h1>
 <h2 id="overview">Overview</h2>
-<p>Ethiopia has its own ancient calendar based on the system called Bahire Hasab - ባሕረ ሃሳብ which means the Sea of Ideas. Bahire Hasab  also known as Abushakir is a chronological system used for calculating the times of festivals and the beginning and ending of the fasting days throughout the year.</p>
-<p>The baher_hasab is a Python package that simplifies the process of working with the Bahire Hasab (also known as Abushakir) calendar. This package provides a set of tools and functions to help users easily calculate the dates of festivals and the beginning and ending of fasting days throughout the year.</p>
+<p>Ethiopia has its own ancient calendar based on the system called Baher Hasab - ባሕረ ሃሳብ which means the Sea of Ideas. Baher Hasab  also known as Abushakir is a chronological system used for calculating the times of festivals and the beginning and ending of the fasting days throughout the year.</p>
+<p>The baher_hasab is a Python package that simplifies the process of working with the Baher Hasab (also known as Abushakir) calendar. This package provides a set of tools and functions to help users easily calculate the dates of festivals and the beginning and ending of fasting days throughout the year.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://sam23121.github.io/baher_hasab/baherhasab/">Documentation</a></li>
+<li><a href="https://github.com/sam23121/baher_hasab">Github</a></li>
+<li><a href="https://pypi.org/project/baher_hasab/">PyPI</a></li>
+<li><a href="https://github.com/sam23121/baher_hasab/issues">Issues</a></li>
+<li><a href="https://eotcmk.org/a/%E1%89%A3%E1%88%95%E1%88%A8-%E1%88%80%E1%88%B3%E1%89%A5/">Extra Information</a></li>
+</ul>
 <h2 id="key-features">Key Features</h2>
 <ul>
 <li><strong>Calendar Conversion</strong>: Easily convert between the Gregorian calendar and the Ethiopian calendar.</li>
-<li><strong>Festival Calculations</strong>: Automatically determine the dates of major festivals and holidays based on the Bahire Hasab calculations.</li>
+<li><strong>Festival Calculations</strong>: Automatically determine the dates of major festivals and holidays based on the Baher Hasab calculations.</li>
 <li><strong>Fasting Day Tracking</strong>: Effortlessly track the start and end dates of fasting periods throughout the year.</li>
 </ul>
 <h2 id="installation">Installation</h2>
@@ -86,10 +110,10 @@
 </code></pre>
 <h2 id="usage">Usage</h2>
 <p>Here's a simple example of how to use the package:</p>
-<pre><code class="language-python">from bahire_hasab import BahireHasab
+<pre><code class="language-python">from baher_hasab import BaherHasab
 
 # Create a Bahire Hasab instance
-bh = BahireHasab(given_year=2016)
+bh = BaherHasab(given_year=2016)
 
 # Get the date of a specific festival
 event_date = bh.get_event_date('hudade')
@@ -97,9 +121,31 @@ print(event_date) # Outputs Megabit 2
 </code></pre>
 <h2 id="contribution">Contribution</h2>
 <p>Contributions to the baher_hasab package are welcome! If you encounter any issues or have suggestions for new features, please feel free to open an issue or submit a pull request on the GitHub repository.</p>
+<h2 id="note">Note</h2>
+<p>Defining some terms to get started:
+- <strong>Baher Hasab</strong>: Also known as Abushakir, is a chronological system used for calculating the times of festivals and the beginning and ending of the fasting days throughout the year.
+- <strong>neneweh</strong> (ነነዌ): is the Ethiopian name for The three day fast that the neneweh people did (Book of Jonah)
+- <strong>Hudade</strong> (ሁዳዴ): also known as abiy_tsome (አብይ ጾም) is the Ethiopian name for the Great Lent.
+- <strong>debrezeit</strong> (ደብረዘይት): is the Ethiopian name for the middle day of the Great lent.
+- <strong>hosana</strong> (ሆሳዕና): is the Ethiopian name for the day of Entrance of Jesus to Jerusalem.
+- <strong>seklet</strong> (ስቅለት): is the Ethiopian name for the holy Friday.
+- <strong>tensae</strong> (ትንሳኤ): is the Ethiopian name for the Easter.
+- <strong>rekeb_kanat</strong> (ርክበ ካህናት): is the Ethiopian name for the "Coming together of the priests".
+- <strong>erget</strong> (ዕርገት): is the Ethiopian name for the day of ascension of Jesus Christ.
+- <strong>piraklitos</strong> (ጰራቅሊጦስ): is the Ethiopian name for the Pentecost.
+- <strong>hawaryat</strong> (ሐዋርያት): is the Ethiopian name for the fast of the apostles.
+- <strong>dehenet</strong> (ድህንነት
+): is the Ethiopian name for the starting day of wenesday and friday fasting.
+- <strong>wengelawyan</strong> (ወንጌላውያን): is the Ethiopian name for the gospel of the year.
+- <strong>awde_kemer</strong> (አውደ ቀመር): its a cycle that comes every 532 years.
+- <strong>awde_mahtot</strong> (አውደ ማሕቶት): its a cycle that comes every 76 years.
+- <strong>awde_tsehay</strong> (አውደ መስከር): its a cycle that comes every 28 years.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="baherhasab/" class="btn btn-neutral float-right" title="BaherHasab">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -122,6 +168,8 @@ print(event_date) # Outputs Megabit 2
     
     
     
+      <span><a href="baherhasab/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script src="js/jquery-3.6.0.min.js"></script>
@@ -140,5 +188,5 @@ print(event_date) # Outputs Megabit 2
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-07-26 19:59:40.513585+00:00
+Build Date UTC : 2025-03-06 14:25:32.023425+00:00
 -->
