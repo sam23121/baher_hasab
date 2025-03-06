@@ -7,7 +7,7 @@ Ethiopia has its own ancient calendar based on the system called Baher Hasab - á
 The baher_hasab is a Python package that simplifies the process of working with the Baher Hasab (also known as Abushakir) calendar. This package provides a set of tools and functions to help users easily calculate the dates of festivals and the beginning and ending of fasting days throughout the year.
 
 
-## Link
+## Links
 - [Documentation](https://sam23121.github.io/baher_hasab/baherhasab/)
 - [Github](https://github.com/sam23121/baher_hasab)
 - [PyPI](https://pypi.org/project/baher_hasab/)
