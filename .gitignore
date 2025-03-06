@@ -1,3 +1,4 @@
+HOW_TO_PUSH_TO_PYPI.md
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
