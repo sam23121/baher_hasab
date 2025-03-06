@@ -26,13 +26,55 @@ class BaherHasab:
             given_year (int): The current year in the Ethiopian calendar (its 7 or 8 years less than the
                                     Geogorian calendar depending on the season of the year).
         """
-        self.abiy_kemer = 532  # also known as abiy awde
-        self.awde_mahtot = 76  # also known as mahkelawi awde
-        self.awde_tsehay = 28  # also known as nuhase awde
-        self.awde_abketa = 19
-        self.old_abketa = 11
-        self.amet_alem = 5500
-        self.given_year = given_year
+        self._abiy_kemer = 532  # also known as abiy awde
+        self._awde_mahtot = 76  # also known as mahkelawi awde
+        self._awde_tsehay = 28  # also known as nuhase awde
+        self._awde_abketa = 19
+        self._old_abketa = 11
+        self._amet_alem = 5500
+        self._given_year = given_year
+
+    def __str__(self) -> str:
+        total_years = self.get_total_years()
+        abiy_kemer, abiy_kemer_passed_years, abiy_kemer_remaining_years = self.get_awde_kemer()
+        awde_mahtot, awde_mahtot_passed_years, awde_mahtot_remaining_years = self.get_awde_mahtot()
+        awde_tsehay, awde_tsehay_passed_years, awde_tsehay_remaining_years = self.get_awde_tsehay()
+        wember = self.get_wember()
+        abketa = self.get_abketa()
+        metke = self.get_metke()
+        nenewe = self.get_nenewe()
+        hudade = self.get_hudade()
+        debrezeit = self.get_debrezeit()
+        hosana = self.get_hosana()
+        seklet = self.get_seklet()
+        tensae = self.get_tensae()
+        rekeb_kanat = self.get_rekeb_kanat()
+        erget = self.get_erget()
+        piraklitos = self.get_piraklitos()
+        hawaryat = self.get_hawaryat()
+        
+
+        return (
+            f"BaherHasab Summary:\n"
+            f"Total Years: {total_years}\n"
+            f"Wember: {wember}\n"
+            f"Abketa: {abketa}\n"
+            f"Metke: {metke}\n"
+            f"Nenewe: {nenewe}\n"
+            f"Hudade: {hudade}\n"
+            f"Debrezeit: {debrezeit}\n"
+            f"Hosana: {hosana}\n"
+            f"Seklet: {seklet}\n"
+            f"Tensae: {tensae}\n"
+            f"Rekeb Kanat: {rekeb_kanat}\n"
+            f"Erget: {erget}\n"
+            f"Piraklitos: {piraklitos}\n"
+            f"Hawaryat: {hawaryat}\n"
+            f"Abiy Kemer: {abiy_kemer} (Passed: {abiy_kemer_passed_years}, Remaining: {abiy_kemer_remaining_years})\n"
+            f"Awde Mahtot: {awde_mahtot} (Passed: {awde_mahtot_passed_years}, Remaining: {awde_mahtot_remaining_years})\n"
+            f"Awde Tsehay: {awde_tsehay} (Passed: {awde_tsehay_passed_years}, Remaining: {awde_tsehay_remaining_years})"
+        )
+    
 
     def get_total_years(self) -> int:
         """
@@ -41,7 +83,7 @@ class BaherHasab:
         Returns:
             int: The total number of years.
         """
-        return self.amet_alem + self.given_year
+        return self._amet_alem + self._given_year
 
     def get_wember(self) -> int:
         """
@@ -52,7 +94,7 @@ class BaherHasab:
             int: The Wember value.
         """
         total_years = self.get_total_years()
-        return (total_years - 1) % self.awde_abketa
+        return (total_years - 1) % self._awde_abketa
 
     def get_abketa(self) -> int:
         """
@@ -104,7 +146,7 @@ class BaherHasab:
         return nenewe_day, metke_month
     
 
-    def get_nenewe(self) -> Tuple[int, int]:
+    def get_nenewe(self) -> str:
         """
         Calculate the nenewe day and Metke month based on the Metke value.
 
@@ -119,9 +161,9 @@ class BaherHasab:
 
         
         return (
-            f"Nenewe Starts at Tir {nenewe_day}"
+            f"Tir {nenewe_day}"
             if day_of_nenewe + metke <= 30 and metke_month == 0
-            else f"Nenewe Starts at Yekatit {nenewe_day}"
+            else f"Yekatit {nenewe_day}"
             )
 
     def get_event_date(self, event_name: str) -> str:
@@ -253,7 +295,7 @@ class BaherHasab:
         Returns:
             str: The Gospel (Wengelawyan) of the year
         """
-        gospels = self.given_year % 4
+        gospels = self._given_year % 4
         return Wengelawyan().reverse_mapping[gospels]
 
     def get_awde_kemer(self) -> Tuple[int, int, int]:
@@ -266,12 +308,12 @@ class BaherHasab:
             int: the years left for the awde kemer to finish
         """
         total_years = self.get_total_years()
-        ith_abiy_kemer = (total_years // self.abiy_kemer) + 1
-        passed_years = total_years % self.abiy_kemer
-        reminded_years = self.abiy_kemer - passed_years
-        print(f"""We are in the {ith_abiy_kemer}th Abiy kemer \n 
-              have gone through {passed_years} years \n
-              and have {reminded_years} years left""")
+        ith_abiy_kemer = (total_years // self._abiy_kemer) + 1
+        passed_years = total_years % self._abiy_kemer
+        reminded_years = self._abiy_kemer - passed_years
+        # print(f"""We are in the {ith_abiy_kemer}th Abiy kemer \n 
+        #       have gone through {passed_years} years \n
+        #       and have {reminded_years} years left""")
         return ith_abiy_kemer, passed_years, reminded_years
 
     def get_awde_mahtot(self) -> Tuple[int, int, int]:
@@ -284,12 +326,12 @@ class BaherHasab:
             int: the years left for the awde mahtot to finish
         """
         total_years = self.get_total_years()
-        ith_awde_mahtot = (total_years // self.awde_mahtot) + 1
-        passed_years = total_years % self.awde_mahtot
-        reminded_years = self.awde_mahtot - passed_years
-        print(f"""We are in the {ith_awde_mahtot}th Awde Mahtot \n 
-              have gone through {passed_years} years \n
-              and have {reminded_years} years left""")
+        ith_awde_mahtot = (total_years // self._awde_mahtot) + 1
+        passed_years = total_years % self._awde_mahtot
+        reminded_years = self._awde_mahtot - passed_years
+        # print(f"""We are in the {ith_awde_mahtot}th Awde Mahtot \n 
+        #       have gone through {passed_years} years \n
+        #       and have {reminded_years} years left""")
         return ith_awde_mahtot, passed_years, reminded_years
 
     def get_awde_tsehay(self) -> Tuple[int, int, int]:
@@ -302,17 +344,17 @@ class BaherHasab:
             int: the years left for the awde tsehay to finish
         """
         total_years = self.get_total_years()
-        ith_awde_tsehay = (total_years // self.awde_tsehay) + 1
-        passed_years = total_years % self.awde_tsehay
-        reminded_years = self.awde_tsehay - passed_years
-        print(f"""We are in the {ith_awde_tsehay}th Awde Mahtot \n 
-              have gone through {passed_years} years \n
-              and have {reminded_years} years left""")
+        ith_awde_tsehay = (total_years // self._awde_tsehay) + 1
+        passed_years = total_years % self._awde_tsehay
+        reminded_years = self._awde_tsehay - passed_years
+        # print(f"""We are in the {ith_awde_tsehay}th Awde Mahtot \n 
+        #       have gone through {passed_years} years \n
+        #       and have {reminded_years} years left""")
         return ith_awde_tsehay, passed_years, reminded_years
 
     def ethiopian_to_gregorian(
         self, ethiopian_year: int, ethiopian_month: int, ethiopian_day: int
-    ) -> tuple[int, int, int]:
+    ) -> Tuple[int, int, int]:
         """Convert an Ethiopian date to a Gregorian date.
 
         Args:
@@ -330,7 +372,7 @@ class BaherHasab:
 
     def gregorian_to_ethiopian(
         self, gregorian_year: int, gregorian_month: int, gregorian_day: int
-    ) -> tuple[int, int, int]:
+    ) -> Tuple[int, int, int]:
         """Convert a Gregorian date to an Ethiopian date.
 
         Args:

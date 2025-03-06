@@ -56,7 +56,7 @@ def is_ethiopian_leap_year(year: int) -> bool:
 
 def calculate_gregorian_to_ethiopian(
     gregorian_year: int, gregorian_month: int, gregorian_day: int
-) -> tuple[int, int, int]:
+) -> Tuple[int, int, int]:
     """Convert a Gregorian date to an Ethiopian date.
 
     Args:
@@ -137,7 +137,7 @@ def calculate_gregorian_to_ethiopian(
 
 def calculate_ethiopian_to_gregorian(
     ethiopian_year: int, ethiopian_month: int, ethiopian_day: int
-) -> tuple[int, int, int]:
+) -> Tuple[int, int, int]:
     """Convert an Ethiopian date to a Gregorian date.
 
     Args:
