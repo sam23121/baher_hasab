@@ -1,6 +1,9 @@
 import unittest
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join('..')))
 from baher_hasab.baher_hasab import BaherHasab
-from baher_hasab.helper import add_days, gregorian_to_ethiopian, ethiopian_to_gregorian
+from baher_hasab.helper import add_days, calculate_ethiopian_to_gregorian, calculate_gregorian_to_ethiopian
 
 
 class TestBaherHasab(unittest.TestCase):
@@ -13,24 +16,24 @@ class TestBaherHasab(unittest.TestCase):
         self.year_edge = BaherHasab(given_year=1967)
 
     def test_gregorian_to_ethiopian(self):
-        self.assertEqual(gregorian_to_ethiopian(2024, 7, 31), (2016, 11, 24))
-        self.assertEqual(gregorian_to_ethiopian(2023, 9, 11), (2015, 13, 6))
-        self.assertEqual(gregorian_to_ethiopian(2023, 9, 12), (2016, 1, 1))
-        self.assertEqual(gregorian_to_ethiopian(2024, 9, 11), (2017, 1, 1))
-        self.assertEqual(gregorian_to_ethiopian(2024, 9, 10), (2016, 13, 5))
-        self.assertEqual(gregorian_to_ethiopian(2024, 4, 30), (2016, 8, 22))
-        self.assertEqual(gregorian_to_ethiopian(2020, 10, 10), (2013, 1, 30))
-        self.assertEqual(gregorian_to_ethiopian(2021, 9, 10), (2013, 13, 5))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2024, 7, 31), (2016, 11, 24))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2023, 9, 11), (2015, 13, 6))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2023, 9, 12), (2016, 1, 1))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2024, 9, 11), (2017, 1, 1))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2024, 9, 10), (2016, 13, 5))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2024, 4, 30), (2016, 8, 22))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2020, 10, 10), (2013, 1, 30))
+        self.assertEqual(calculate_gregorian_to_ethiopian(2021, 9, 10), (2013, 13, 5))
 
     def test_ethiopian_to_gregorian(self):
-        self.assertEqual(ethiopian_to_gregorian(2016, 11, 24), (2024, 7, 31))
-        self.assertEqual(ethiopian_to_gregorian(2015, 13, 6), (2023, 9, 11))
-        self.assertEqual(ethiopian_to_gregorian(2016, 1, 1), (2023, 9, 12))
-        self.assertEqual(ethiopian_to_gregorian(2017, 1, 1), (2024, 9, 11))
-        self.assertEqual(ethiopian_to_gregorian(2016, 13, 5), (2024, 9, 10))
-        self.assertEqual(ethiopian_to_gregorian(2019, 8, 22), (2027, 4, 30))
-        self.assertEqual(ethiopian_to_gregorian(2013, 1, 30), (2020, 10, 10))
-        self.assertEqual(ethiopian_to_gregorian(2014, 13, 5), (2022, 9, 10))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2016, 11, 24), (2024, 7, 31))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2015, 13, 6), (2023, 9, 11))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2016, 1, 1), (2023, 9, 12))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2017, 1, 1), (2024, 9, 11))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2016, 13, 5), (2024, 9, 10))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2019, 8, 22), (2027, 4, 30))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2013, 1, 30), (2020, 10, 10))
+        self.assertEqual(calculate_ethiopian_to_gregorian(2014, 13, 5), (2022, 9, 10))
         # self.assertEqual(ethiopian_to_gregorian(2013, 13, 5), (2021, 9, 10))
 
     def test_get_total_years(self):
@@ -158,27 +161,27 @@ class TestBaherHasab(unittest.TestCase):
         # self.assertEqual(result, expected, "Adding 37 days to 'thursday' should give 'friday'")
 
     def test_get_nenewe(self):
-        result, metke_month = self.year_random.get_nenewe()
+        result, metke_month = self.year_random.get_nenewe_date()
         expected_result = 9  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 9")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
-        result, metke_month = self.year_lowest.get_nenewe()
+        result, metke_month = self.year_lowest.get_nenewe_date()
         expected_result = 19  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 19")
         self.assertEqual(metke_month, 0, "Metke month should be 0")
 
-        result, metke_month = self.year_highest.get_nenewe()
+        result, metke_month = self.year_highest.get_nenewe_date()
         expected_result = 21  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 21")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
-        result, metke_month = self.year_current.get_nenewe()
+        result, metke_month = self.year_current.get_nenewe_date()
         expected_result = 18  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 18")
         self.assertEqual(metke_month, 30, "Metke month should be 30")
 
-        result, metke_month = self.year_edge.get_nenewe()
+        result, metke_month = self.year_edge.get_nenewe_date()
         expected_result = 17  # Based on the calculation and example data
         self.assertEqual(result, expected_result, "Nenewa day should be 18")
         self.assertEqual(metke_month, 30, "Metke month should be 0")
